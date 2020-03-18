@@ -100,6 +100,30 @@ class DataController {
         
         results.removeFirst() //removing the keywords from results
         
+        var formattedDates: [Date] = []
+        //Convert dates from String to Date
+        for date in dates {
+            var dateString = date
+            if dateString.count >= "MM/dd/yy".count { //Check for "/r" thats appended to the last date
+                dateString.removeLast(2) //if there, remove it
+            }
+            
+            if dateString.count < "MM/dd/yy".count { //Check if month is missing place holder 0
+                dateString.insert("0", at: dateString.startIndex) //if so, add it
+            }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US")
+            dateFormatter.dateStyle = .short
+            guard let formattedDate = dateFormatter.date(from: dateString) else {
+                NSLog("Could not convert string to date")
+                return nil
+            }
+            formattedDates.append(formattedDate)
+        }
+        
+        
+        
         for i in 0...results.count-1 {
             var country = results[i]
             if country.components(separatedBy: ",").count > (results.first?.components(separatedBy: ",").count)! {
@@ -120,9 +144,9 @@ class DataController {
             var reports = area
             reports.removeFirst(4)
             
-            var dailyDictionary: [String : String] = [:]
+            var dailyDictionary: [Date : String] = [:]
             
-            for (index, date) in dates.enumerated() {
+            for (index, date) in formattedDates.enumerated() {
                 dailyDictionary[date] = reports[index]
             }
             
