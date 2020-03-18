@@ -14,6 +14,8 @@
 		C41EEE62242192FB004644ED /* Covid19Reports.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C41EEE60242192FB004644ED /* Covid19Reports.xcdatamodeld */; };
 		C41EEE64242192FE004644ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C41EEE63242192FE004644ED /* Assets.xcassets */; };
 		C41EEE67242192FE004644ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C41EEE65242192FE004644ED /* LaunchScreen.storyboard */; };
+		C41EEE6F24219378004644ED /* DataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41EEE6E24219378004644ED /* DataSet.swift */; };
+		C41EEE71242193ED004644ED /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41EEE70242193ED004644ED /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		C41EEE63242192FE004644ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C41EEE66242192FE004644ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C41EEE68242192FE004644ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C41EEE6E24219378004644ED /* DataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSet.swift; sourceTree = "<group>"; };
+		C41EEE70242193ED004644ED /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 				C41EEE57242192FB004644ED /* AppDelegate.swift */,
 				C41EEE59242192FB004644ED /* SceneDelegate.swift */,
 				C41EEE5B242192FB004644ED /* ViewController.swift */,
+				C41EEE6E24219378004644ED /* DataSet.swift */,
+				C41EEE70242193ED004644ED /* DataController.swift */,
 				C41EEE5D242192FB004644ED /* Main.storyboard */,
 				C41EEE63242192FE004644ED /* Assets.xcassets */,
 				C41EEE65242192FE004644ED /* LaunchScreen.storyboard */,
@@ -142,6 +148,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C41EEE5C242192FB004644ED /* ViewController.swift in Sources */,
+				C41EEE71242193ED004644ED /* DataController.swift in Sources */,
+				C41EEE6F24219378004644ED /* DataSet.swift in Sources */,
 				C41EEE62242192FB004644ED /* Covid19Reports.xcdatamodeld in Sources */,
 				C41EEE58242192FB004644ED /* AppDelegate.swift in Sources */,
 				C41EEE5A242192FB004644ED /* SceneDelegate.swift in Sources */,
