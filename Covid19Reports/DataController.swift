@@ -144,13 +144,16 @@ class DataController {
             var reports = area
             reports.removeFirst(4)
             
-            var dailyDictionary: [Date : String] = [:]
+            var dailyCounts: [DailyCount] = []
             
             for (index, date) in formattedDates.enumerated() {
-                dailyDictionary[date] = reports[index]
+                let countString = reports[index]
+                
+                let dailyCount = DailyCount(date: date, count: countString)
+                dailyCounts.append(dailyCount)
             }
             
-            coronaResults.append(DataSet(state: state, country: country, lat: lat, long: long, reportsDictionary: dailyDictionary))
+            coronaResults.append(DataSet(state: state, country: country, lat: lat, long: long, dailyCounts: dailyCounts))
         }
         return coronaResults
     }

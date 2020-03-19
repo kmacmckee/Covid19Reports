@@ -52,17 +52,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.textLabel!.text = report.country
         }
         
-        var currentCount = ""
-        if let todaysCount = report.reportsDictionary[Date()] {
-            currentCount = todaysCount
+        if let latestReport = report.dailyCounts.last {
+            let count = latestReport.count
+            cell.detailTextLabel!.text = count
         } else {
-            
-            let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-            
-            currentCount = report.reportsDictionary[yesterday] ?? ""
+            cell.detailTextLabel!.text = "n/a"
         }
         
-        cell.detailTextLabel!.text = currentCount
         
         return cell
     }

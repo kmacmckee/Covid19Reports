@@ -14,5 +14,5 @@ struct DataSet {
     var country: String
     var lat: String
     var long: String
-    var reportsDictionary: [Date : String]
+    var dailyCounts: [DailyCount]
 }
