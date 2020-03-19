@@ -7,26 +7,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Covid-19 Reports-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Covid19Reports" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Covid-19 Reports" id="BYZ-38-t0r" customClass="ViewController" customModule="Covid19Reports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqL-s1-odY">
-                                <rect key="frame" x="52" y="807.5" width="310.5" height="44.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vqL-s1-odY" secondAttribute="height" multiplier="7/1" id="43i-SA-ZVx"/>
-                                </constraints>
-                                <state key="normal" title="Run"/>
-                                <connections>
-                                    <action selector="run:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B5m-jW-JlI"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mYL-DW-V8g">
-                                <rect key="frame" x="0.0" y="44" width="414" height="753.5"/>
+                                <rect key="frame" x="0.0" y="135" width="414" height="678"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReportCell" textLabel="7fA-ga-MlP" detailTextLabel="1Js-fL-d1G" style="IBUITableViewCellStyleValue1" id="oQ5-5r-pDJ">
@@ -55,26 +45,65 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="21E-Pd-Jcu">
+                                <rect key="frame" x="80" y="96" width="254" height="32"/>
+                                <segments>
+                                    <segment title="Confirmed"/>
+                                    <segment title="Fatal"/>
+                                    <segment title="Recovered"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentDidChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="kSU-h3-pU4"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="vqL-s1-odY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3p0-QY-ybR"/>
                             <constraint firstItem="mYL-DW-V8g" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Emh-0h-NhB"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vqL-s1-odY" secondAttribute="bottom" constant="10" id="I1l-q6-nJt"/>
-                            <constraint firstItem="vqL-s1-odY" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="3/4" id="KyS-Vg-bsR"/>
-                            <constraint firstItem="mYL-DW-V8g" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZUY-Og-0hE"/>
+                            <constraint firstItem="mYL-DW-V8g" firstAttribute="top" secondItem="21E-Pd-Jcu" secondAttribute="bottom" constant="8" symbolic="YES" id="I3a-Sg-Ieh"/>
+                            <constraint firstItem="21E-Pd-Jcu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IK4-nb-qLe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mYL-DW-V8g" secondAttribute="bottom" id="Uh8-mN-HML"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mYL-DW-V8g" secondAttribute="trailing" id="coF-UR-OYn"/>
-                            <constraint firstItem="vqL-s1-odY" firstAttribute="top" secondItem="mYL-DW-V8g" secondAttribute="bottom" constant="10" id="hbn-Xu-cTn"/>
+                            <constraint firstItem="21E-Pd-Jcu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="8" id="gsL-ly-Lut"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Covid-19 Reports" id="BrM-Hk-40t">
+                        <barButtonItem key="rightBarButtonItem" image="info.circle" catalog="system" id="0vC-tv-KyD">
+                            <connections>
+                                <segue destination="ce6-pu-6J9" kind="showDetail" identifier="toInfo" id="l1d-Fz-Jq8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="categorySegmentedControl" destination="21E-Pd-Jcu" id="VKd-TN-cy6"/>
                         <outlet property="tableView" destination="mYL-DW-V8g" id="5hz-tS-Oz1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="139"/>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="03I-VR-SZi">
+            <objects>
+                <viewController id="ce6-pu-6J9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ga1-pC-jlS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Rhb-7V-Zbr"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17C-ca-Pz8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="info.circle" catalog="system" width="64" height="60"/>
+    </resources>
 </document>

@@ -11,14 +11,30 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
+    @IBOutlet weak var categorySegmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     let dataController = DataController()
+    var displayedData: [DataSet]?
     
     var confirmedCases: [DataSet]? {
         didSet {
             updateViews()
         }
     }
+    
+    var fatalCases: [DataSet]? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    var recoveredCases: [DataSet]? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +42,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         tableView.dataSource = self
         
+        dataController.fetchConfirmedCases { (data, error) in
+            if let error = error {
+                NSLog("Error fetching confirmed cases: \(error)")
+                return
+            }
+            self.displayedData = data
+            self.confirmedCases = data
+        }
         
-        // Do any additional setup after loading the view.
     }
 
     func updateViews() {
@@ -37,14 +60,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return confirmedCases?.count ?? 0
+        return displayedData?.count ?? 0
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReportCell", for: indexPath)
         
-        guard let cases = confirmedCases else { return UITableViewCell() }
+        guard let cases = displayedData else { return UITableViewCell() }
         let report = cases[indexPath.row]
         if report.state != nil && report.state != "" {
             cell.textLabel!.text = "\(report.state!), \(report.country)"
@@ -59,14 +82,59 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.detailTextLabel!.text = "n/a"
         }
         
-        
         return cell
     }
-
-    @IBAction func run(_ sender: Any) {
-        dataController.fetchConfirmedCases { (data, error) in
-            self.confirmedCases = data
+    
+    @IBAction func segmentDidChange(_ sender: Any) {
+        
+        switch categorySegmentedControl.selectedSegmentIndex {
+        case 0:
+            if confirmedCases == nil {
+                dataController.fetchConfirmedCases { (data, error) in
+                    if let error = error {
+                        NSLog("Error fetching confirmed cases: \(error)")
+                        return
+                    }
+                    self.displayedData = data
+                    self.confirmedCases = data
+                }
+            } else {
+                self.displayedData = self.confirmedCases
+                self.updateViews()
+            }
+        case 1:
+            if fatalCases == nil {
+                dataController.fetchFatalCases { (data, error) in
+                    if let error = error {
+                        NSLog("Error fetching fatal cases: \(error)")
+                        return
+                    }
+                    self.displayedData = data
+                    self.fatalCases = data
+                }
+            } else {
+                self.displayedData = self.fatalCases
+                self.updateViews()
+            }
+        case 2:
+            if recoveredCases == nil {
+                dataController.fetchRecoveredCases { (data, error) in
+                    if let error = error {
+                        NSLog("Error fetching recovered cases: \(error)")
+                        return
+                    }
+                    self.displayedData = data
+                    self.recoveredCases = data
+                }
+            } else {
+                self.displayedData = self.recoveredCases
+                self.updateViews()
+            }
+        default:
+            return
         }
     }
+    
+    
 }
 
